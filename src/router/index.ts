@@ -17,17 +17,10 @@ const router = createRouter({
       path: '/profile/:id',
       component: () => import('@/views/ProfileView.vue'),
       children: [
-        { path: 'album', redirect: (to) => ({ path: `${to.path}/1` }) },
-        {
-          path: 'album/:albumId',
-          component: () => import('@/views/AlbumListView.vue'),
-        },
+        // { path: 'album', redirect: (to) => ({ path: `${to.path}/1` }) },
+        { path: 'album', component: () => import('@/views/AlbumListView.vue') },
         { path: 'todo', component: () => import('@/views/TodoListView.vue') },
         { path: 'post', component: () => import('@/views/PostListView.vue') },
-        {
-          path: 'album/:albumId',
-          component: () => import('@/views/AlbumListView.vue'),
-        },
       ],
     },
   ],
