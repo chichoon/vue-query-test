@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
-
 <template>
-  <main>hihi</main>
+  <RouterLink to="/profile">Go To Profiles</RouterLink>
 </template>
+
+<script setup lang="ts">
+import { RouterLink } from 'vue-router';
+</script>
