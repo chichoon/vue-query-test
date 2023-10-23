@@ -11,19 +11,24 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      component: () => import('@/views/ProfileListView.vue'),
+      component: () => import('@/views/ProfileListView/ProfileListView.vue'),
     },
     {
       path: '/profile/:id',
       component: () => import('@/views/ProfileView.vue'),
-    },
-    {
-      path: '/profile/:id/album',
-      component: () => import('@/views/AlbumListView.vue'),
-    },
-    {
-      path: '/profile/:id/album/:albumId',
-      component: () => import('@/views/AlbumView.vue'),
+      children: [
+        { path: 'album', redirect: (to) => ({ path: `${to.path}/1` }) },
+        {
+          path: 'album/:albumId',
+          component: () => import('@/views/AlbumListView.vue'),
+        },
+        { path: 'todo', component: () => import('@/views/TodoListView.vue') },
+        { path: 'post', component: () => import('@/views/PostListView.vue') },
+        {
+          path: 'album/:albumId',
+          component: () => import('@/views/AlbumListView.vue'),
+        },
+      ],
     },
   ],
 });
