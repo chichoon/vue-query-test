@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/vue-query';
 import { profileKey } from './queries';
 import profile from '../../services/profile';
 import { CACHE_TIME, STALE_TIME } from '../../utils/constants';
-import { type Profile } from '@/types/profile.d';
+import type { Profile } from '@/types/profile';
 
 export function useGetProfile(id: string) {
   return useQuery<Profile>({
