@@ -1,15 +1,17 @@
 <template>
   <LoadingComponent v-if="isLoading" />
   <ErrorComponent v-else-if="isError" :error="error" />
-  <template v-if="!!todoPages">
-    <ul v-for="(todos, index) in todoPages.pages" :key="index" class="todo-wrappper">
-      <li v-for="todo in todos" :key="todo.id" class="todo-element">
-        <div :class="{ dot: true, done: todo.completed }" />
-        <span>{{ todo.title }}</span>
-      </li>
+  <div v-if="!!todoPages" class="todo-wrapper">
+    <ul class="todo-list">
+      <template v-for="(todos, index) in todoPages.pages" :key="index">
+        <li v-for="todo in todos" :key="todo.id" class="todo-element">
+          <div :class="{ dot: true, done: todo.completed }" />
+          <span>{{ todo.title }}</span>
+        </li>
+      </template>
     </ul>
-    <button @click="() => fetchNextPage()">Load more</button>
-  </template>
+    <button class="load-button" @click="() => fetchNextPage()">Load more</button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -39,9 +41,38 @@ const { data: todoPages, isLoading, isError, error, fetchNextPage } = useGetInfi
   }
 }
 
+.todo-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo-list {
+  width: 500px;
+  height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+}
+
 .todo-element {
   display: flex;
   flex-direction: row;
   padding: 5px;
+}
+
+.load-button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #eee;
+  }
 }
 </style>
