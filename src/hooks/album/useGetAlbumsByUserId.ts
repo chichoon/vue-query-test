@@ -8,7 +8,7 @@ import type { Album } from '@/types/album';
 
 export function useGetAlbumsByUserId(userId: Ref<number>) {
   return useQuery<Album[]>({
-    queryKey: albumKey.all,
+    queryKey: albumKey.user.id(userId),
     queryFn: () => album.getFromUserId(userId.value),
     cacheTime: CACHE_TIME,
     staleTime: STALE_TIME,

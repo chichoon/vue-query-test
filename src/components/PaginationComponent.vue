@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <button class="button" :class="{ disabled: currentPage <= 1 }" @click="handlePrevPage">
+    <button class="button" :class="{ disabled: currentPage <= props.start }" @click="handlePrevPage">
       <ArrowLeftIcon />
     </button>
     <div>
@@ -18,6 +18,7 @@ import ArrowRightIcon from './icons/ArrowRightIcon.vue';
 
 interface Props {
   currentPage: number;
+  start: number;
   limit: number;
 }
 
@@ -29,7 +30,7 @@ const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
 const handlePrevPage = () => {
-  if (props.currentPage === 1) return;
+  if (props.currentPage === props.start) return;
   emits('update:currentPage', props.currentPage - 1);
 };
 

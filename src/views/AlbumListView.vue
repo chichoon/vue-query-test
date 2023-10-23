@@ -1,28 +1,37 @@
 <template>
-  <LoadingComponent v-if="isLoading" />
-  <ErrorComponent v-else-if="isError" :error="error" />
+  <LoadingComponent v-if="isPhotoListLoading" />
+  <ErrorComponent v-else-if="isPhotoListError" :error="PhotoListError" />
   <div v-else-if="!!album" class="album-wrapper">
     <span>{{ album[currentPage].title }}</span>
     <img :src="album[currentPage].url" :alt="album[currentPage].title" />
-    <PaginationComponent v-model:currentPage="currentPage" :limit="10" />
+    <PaginationComponent v-model:currentPage="currentPage" :start="0" :limit="album.length - 1" />
   </div>
-  <PaginationComponent v-model:currentPage="currentAlbum" :limit="10" />
+  <PaginationComponent v-model:currentPage="currentAlbum" :start="(id - 1) * 10 + 1" :limit="(id - 1) * 10 + 10" />
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { useGetPhotosByAlbumId } from '@/hooks/photo/useGetPhotoByAlbumId';
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ErrorComponent from '@/components/ErrorComponent.vue';
 
-const currentAlbum = ref(1);
-const currentPage = ref(1);
-const { data: album, isLoading, isError, error } = useGetPhotosByAlbumId(currentAlbum);
+const route = useRoute();
+const id = computed(() => Number(route.params.id));
+
+const currentAlbum = ref((id.value - 1) * 10 + 1);
+const currentPage = ref(0);
+const {
+  data: album,
+  isLoading: isPhotoListLoading,
+  isError: isPhotoListError,
+  error: PhotoListError,
+} = useGetPhotosByAlbumId(currentAlbum);
 
 watch(currentAlbum, () => {
-  currentPage.value = 1;
+  currentPage.value = 0;
 });
 </script>
 
