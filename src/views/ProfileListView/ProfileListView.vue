@@ -1,6 +1,7 @@
 <template>
   <LoadingComponent v-if="isLoading" />
-  <ul class="list-wrapper">
+  <ErrorComponent v-else-if="isError" :error="error as string" />
+  <ul v-else class="list-wrapper">
     <ProfilePreview v-for="profile in profiles" :key="profile.id" :profile="profile" />
   </ul>
 </template>
@@ -9,8 +10,9 @@
 import { useGetProfiles } from '@/hooks/profile';
 import ProfilePreview from './ProfilePreview.vue';
 import LoadingComponent from '@/components/LoadingComponent.vue';
+import ErrorComponent from '@/components/ErrorComponent.vue';
 
-const { data: profiles, isLoading, isError } = useGetProfiles();
+const { data: profiles, isLoading, isError, error } = useGetProfiles();
 </script>
 
 <style scoped>
