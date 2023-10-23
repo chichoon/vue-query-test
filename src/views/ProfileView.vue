@@ -17,9 +17,9 @@
       </div>
     </div>
     <div class="link-wrapper">
-      <RouterLink :to="`/profile/${profile?.id}/album`">Go To Album</RouterLink>
-      <RouterLink :to="`/profile/${profile?.id}/todo`">Go To Todo</RouterLink>
-      <RouterLink :to="`/profile/${profile?.id}/post`">Go To Post</RouterLink>
+      <RouterLink :to="`/profile/${profile?.id}/album`" active-class="active">Go To Album</RouterLink>
+      <RouterLink :to="`/profile/${profile?.id}/todo`" active-class="active">Go To Todo</RouterLink>
+      <RouterLink :to="`/profile/${profile?.id}/post`" active-class="active">Go To Post</RouterLink>
     </div>
     <RouterView />
   </div>
@@ -60,7 +60,6 @@ console.log(dog.value);
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
 }
 
 .profile-img-wrapper {
@@ -92,7 +91,9 @@ console.log(dog.value);
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #ccc;
 
   & a {
     padding: 10px;
@@ -102,7 +103,11 @@ console.log(dog.value);
     color: inherit;
 
     &:hover {
-      background-color: #ccc;
+      background-color: #eee;
+    }
+
+    &.active {
+      background-color: #eee;
     }
   }
 }

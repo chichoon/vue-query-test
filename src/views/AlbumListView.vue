@@ -28,6 +28,7 @@ const { data: album, isLoading, isError, error } = useGetPhotosByAlbumId(current
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
 
@@ -39,6 +40,7 @@ const { data: album, isLoading, isError, error } = useGetPhotosByAlbumId(current
   & img {
     width: 300px;
     height: 300px;
+    margin-bottom: 10px;
   }
 }
 </style>
