@@ -1,0 +1,1 @@
+const o={all:["profile"],id:e=>[...o.all,e],dog:e=>[...o.all,"dog",e]};function l(){return fetch("https://jsonplaceholder.typicode.com/users").then(e=>e.json())}function n(e){return fetch(`https://jsonplaceholder.typicode.com/users/${e}`).then(t=>t.json())}const s={getAll:l,get:n};export{s as a,o as p};
