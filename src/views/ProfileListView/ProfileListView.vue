@@ -1,6 +1,6 @@
 <template>
   <LoadingComponent v-if="isLoading" />
-  <ErrorComponent v-else-if="isError" :error="error as string" />
+  <ErrorComponent v-else-if="isError" :error="error" />
   <ul v-else class="list-wrapper">
     <ProfilePreview v-for="profile in profiles" :key="profile.id" :profile="profile" />
   </ul>
