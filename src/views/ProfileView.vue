@@ -1,6 +1,8 @@
 <template>
   <header class="header">
     <RouterLink to="/profile">{{ '<' }}</RouterLink>
+    <span>Profile</span>
+    <div />
   </header>
   <LoadingComponent v-if="isLoading" />
   <ErrorComponent v-else-if="isError" :error="error" />
@@ -43,10 +45,22 @@ const { data: dog, isLoading: isDogLoading } = useGetDog(id);
 .header {
   border-bottom: 1px solid #ccc;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   & a {
     text-decoration: none;
     color: inherit;
+  }
+
+  & * {
+    flex: 1;
+  }
+
+  & span {
+    text-align: center;
   }
 }
 .wrapper {

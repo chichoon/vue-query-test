@@ -1,4 +1,7 @@
 <template>
+  <header class="header">
+    <h1>Profiles</h1>
+  </header>
   <LoadingComponent v-if="isLoading" />
   <ErrorComponent v-else-if="isError" :error="error" />
   <ul v-else class="list-wrapper">
@@ -16,6 +19,15 @@ const { data: profiles, isLoading, isError, error } = useGetProfiles();
 </script>
 
 <style scoped>
+.header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .list-wrapper {
   list-style: none;
   margin: 0;
