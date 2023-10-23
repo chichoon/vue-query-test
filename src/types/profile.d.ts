@@ -25,3 +25,8 @@ export interface Profile {
   website: string;
   company: Company;
 }
+
+export interface Dog {
+  message: string;
+  status: string;
+}
