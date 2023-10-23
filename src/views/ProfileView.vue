@@ -37,7 +37,6 @@ const route = useRoute();
 const id = computed(() => Number(route.params.id));
 const { data: profile, isLoading, isError, error } = useGetProfile(id);
 const { data: dog, isLoading: isDogLoading } = useGetDog(id);
-console.log(dog.value);
 </script>
 
 <style scoped>

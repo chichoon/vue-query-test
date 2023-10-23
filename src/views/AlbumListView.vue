@@ -4,9 +4,9 @@
   <div v-else-if="!!album" class="album-wrapper">
     <span>{{ album[currentPage].title }}</span>
     <img :src="album[currentPage].url" :alt="album[currentPage].title" />
-    <PaginationComponent v-model:currentPage="currentPage" />
+    <PaginationComponent v-model:currentPage="currentPage" :limit="10" />
   </div>
-  <PaginationComponent v-model:currentPage="currentAlbum" />
+  <PaginationComponent v-model:currentPage="currentAlbum" :limit="10" />
 </template>
 
 <script setup lang="ts">

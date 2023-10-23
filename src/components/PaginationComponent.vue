@@ -6,7 +6,7 @@
     <div>
       <span>{{ props.currentPage }}</span>
     </div>
-    <button class="button" :class="{ disabled: currentPage >= 5000 }" @click="handleNextPage">
+    <button class="button" :class="{ disabled: currentPage >= props.limit }" @click="handleNextPage">
       <ArrowRightIcon />
     </button>
   </div>
@@ -18,6 +18,7 @@ import ArrowRightIcon from './icons/ArrowRightIcon.vue';
 
 interface Props {
   currentPage: number;
+  limit: number;
 }
 
 interface Emits {
@@ -33,7 +34,7 @@ const handlePrevPage = () => {
 };
 
 const handleNextPage = () => {
-  if (props.currentPage === 5000) return;
+  if (props.currentPage === props.limit) return;
   emits('update:currentPage', props.currentPage + 1);
 };
 </script>
