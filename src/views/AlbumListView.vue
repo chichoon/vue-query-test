@@ -2,7 +2,7 @@
   <LoadingComponent v-if="isPhotoListLoading" />
   <ErrorComponent v-else-if="isPhotoListError" :error="PhotoListError" />
   <div v-else-if="!!album" class="album-wrapper">
-    <span>{{ album[currentPage].title }}</span>
+    <h3>{{ album[currentPage].title }}</h3>
     <img :src="album[currentPage].url" :alt="album[currentPage].title" />
     <PaginationComponent v-model:currentPage="currentPage" :start="0" :limit="album.length - 1" />
   </div>
@@ -45,8 +45,9 @@ watch(currentAlbum, () => {
   margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
 
-  & span {
-    font-size: 20px;
+  & h3 {
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: 20px;
   }
 
