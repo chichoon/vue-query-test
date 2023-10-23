@@ -10,9 +10,23 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/photo',
-      name: 'photo',
-      component: () => import('@/views/PhotoView.vue'),
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/views/ProfileListView.vue'),
+      children: [
+        {
+          path: '/profile/:id',
+          name: 'profile-single',
+          component: () => import('@/views/ProfileView.vue'),
+          children: [
+            {
+              path: '/album',
+              name: 'album',
+              component: () => import('@/views/AlbumView.vue'),
+            },
+          ],
+        },
+      ],
     },
   ],
 });
