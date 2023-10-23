@@ -1,8 +1,10 @@
+import type { Ref } from 'vue';
+
 export const albumKey = {
   all: ['album'],
   user: {
     all: () => [...albumKey.all, 'user'],
-    id: (userId: string) => [...albumKey.user.all(), userId],
+    id: (userId: Ref<number>) => [...albumKey.user.all(), userId],
   },
-  id: (id: string) => [...albumKey.all, id],
+  id: (id: Ref<number>) => [...albumKey.all, id],
 };

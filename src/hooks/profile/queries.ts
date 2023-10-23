@@ -1,4 +1,6 @@
+import type { Ref } from 'vue';
+
 export const profileKey = {
   all: ['profile'],
-  id: (id: string) => [...profileKey.all, id],
+  id: (id: Ref<number>) => [...profileKey.all, id],
 };
