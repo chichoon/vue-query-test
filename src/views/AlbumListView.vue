@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import { useGetPhotosByAlbumId } from '@/hooks/photo/useGetPhotoByAlbumId';
@@ -20,6 +20,10 @@ import ErrorComponent from '@/components/ErrorComponent.vue';
 const currentAlbum = ref(1);
 const currentPage = ref(1);
 const { data: album, isLoading, isError, error } = useGetPhotosByAlbumId(currentAlbum);
+
+watch(currentAlbum, () => {
+  currentPage.value = 1;
+});
 </script>
 
 <style scoped>
