@@ -11,22 +11,19 @@ const router = createRouter({
     },
     {
       path: '/profile',
-      name: 'profile',
       component: () => import('@/views/ProfileListView.vue'),
-      children: [
-        {
-          path: '/profile/:id',
-          name: 'profile-single',
-          component: () => import('@/views/ProfileView.vue'),
-          children: [
-            {
-              path: '/album',
-              name: 'album',
-              component: () => import('@/views/AlbumView.vue'),
-            },
-          ],
-        },
-      ],
+    },
+    {
+      path: '/profile/:id',
+      component: () => import('@/views/ProfileView.vue'),
+    },
+    {
+      path: '/profile/:id/album',
+      component: () => import('@/views/AlbumListView.vue'),
+    },
+    {
+      path: '/profile/:id/album/:albumId',
+      component: () => import('@/views/AlbumView.vue'),
     },
   ],
 });
